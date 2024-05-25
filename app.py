@@ -32,10 +32,37 @@ def GPT_response(text):
     #print(response)
     # 重組回應
     #answer = response['choices'][0]['text'].replace('。','')
-    type = ["韓式", "日式", "中式", "美式"]
-    
+    food = ["韓式", "日式", "中式", "美式"]
+    place = ["宜蘭", "台中", "高雄", "基隆","桃園", "台北", "台南"]
+    game = ["剪刀", "石頭", "布"]
+    answer = ""
     if("吃" in text):
-        answer = random.choice(type)
+        answer = random.choice(food)
+    elif("哪裡" in text or "玩" in text):
+        answer = random.choice(place)
+    elif("剪刀" in text or "石頭" in text or "布" in text):
+        answer = random.choice(game)
+        if(text == "剪刀"):
+            if(answer == "剪刀"):
+               answer +="\n啊呀平手再來一次"
+            elif(answer == "石頭"):
+                answer += "\n嘿嘿我贏了"
+            else:
+                answer+="\nQQ你贏了"
+        elif(text == "石頭"):
+            if(answer == "石頭"):
+               answer +="\n啊呀平手再來一次"
+            elif(answer == "布"):
+                answer += "\n嘿嘿我贏了"
+            else:
+                answer+="\nQQ你贏了"
+        else:
+            if(answer == "布"):
+               answer +="\n啊呀平手再來一次"
+            elif(answer == "剪刀"):
+                answer += "\n嘿嘿我贏了"
+            else:
+                answer+="\nQQ你贏了"
     return answer
 
 
