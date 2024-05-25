@@ -38,7 +38,7 @@ def GPT_response(text):
     answer = ""
     if("吃" in text):
         answer = random.choice(food)
-    elif("哪裡" in text or "玩" in text):
+    elif("哪" in text or "玩" in text):
         answer = random.choice(place)
     elif("剪刀" in text or "石頭" in text or "布" in text):
         answer = random.choice(game)
@@ -63,6 +63,8 @@ def GPT_response(text):
                 answer += "\n嘿嘿我贏了"
             else:
                 answer+="\nQQ你贏了"
+    else:
+        answer = "QQ本熊貓聽不懂你在說什麼?"
     return answer
 
 
