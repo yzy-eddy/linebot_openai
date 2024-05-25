@@ -14,6 +14,8 @@ import datetime
 import time
 import traceback
 import random
+import requests
+import json
 #======python的函數庫==========
 
 app = Flask(__name__)
@@ -41,32 +43,34 @@ def GPT_response(text):
     elif("哪" in text or "玩" in text):
         answer = random.choice(place)
     elif("剪刀" in text or "石頭" in text or "布" in text):
-        answer = random.choice(game)
-        if(text == "剪刀"):
-            if(answer == "剪刀"):
-               answer +="\n啊呀平手再來一次"
-            elif(answer == "石頭"):
-                answer += "\n嘿嘿我贏了"
-            else:
-                answer+="\nQQ你贏了"
-        elif(text == "石頭"):
-            if(answer == "石頭"):
-               answer +="\n啊呀平手再來一次"
-            elif(answer == "布"):
-                answer += "\n嘿嘿我贏了"
-            else:
-                answer+="\nQQ你贏了"
+        if(len(text) >= 3):
+            answer = "齁～～作弊鬼"
         else:
-            if(answer == "布"):
-               answer +="\n啊呀平手再來一次"
-            elif(answer == "剪刀"):
-                answer += "\n嘿嘿我贏了"
+            answer = random.choice(game)
+            if(text == "剪刀"):
+                if(answer == "剪刀"):
+                    answer +="\n啊呀平手再來一次"
+                elif(answer == "石頭"):
+                    answer += "\n嘿嘿我贏了"
+                else:
+                    answer+="\nQQ你贏了"
+            elif(text == "石頭"):
+                if(answer == "石頭"):
+                    answer +="\n啊呀平手再來一次"
+                elif(answer == "布"):
+                    answer += "\n嘿嘿我贏了"
+                else:
+                    answer+="\nQQ你贏了"
             else:
-                answer+="\nQQ你贏了"
+                if(answer == "布"):
+                    answer +="\n啊呀平手再來一次"
+                elif(answer == "剪刀"):
+                    answer += "\n嘿嘿我贏了"
+                else:
+                    answer+="\nQQ你贏了"
     else:
         answer = "QQ本熊貓聽不懂你在說什麼?"
     return answer
-
 
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
