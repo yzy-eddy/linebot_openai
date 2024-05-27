@@ -38,6 +38,7 @@ def GPT_response(text):
     place = ["宜蘭", "台中", "高雄", "基隆","桃園", "台北", "台南"]
     game = ["剪刀", "石頭", "布"]
     fortune = ["大吉", "小吉", "中吉", "末吉", "大凶", "小凶"]
+    aplogize = ["不要生氣嘛", "對不起", "不要凶小熊貓嘛"]
     answer = ""
     if("吃" in text):
         answer = random.choice(food)
@@ -71,6 +72,8 @@ def GPT_response(text):
                     answer+="\nQQ你贏了"
     elif("運" in text or "算" in text or "命" in text):
         answer = random.choice(fortune)
+    elif("笨" in text or "討厭" in text or "生氣" in text or "不愛" in text):
+        answer = random.choice(aplogize)
     else:
         answer = "QQ本熊貓聽不懂你在說什麼?"
     return answer
