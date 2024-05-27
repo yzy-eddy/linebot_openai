@@ -79,7 +79,7 @@ def GPT_response(text):
     elif("笨" in text or "討厭" in text or "生氣" in text or "不愛" in text):
         answer = random.choice(aplogize)
     elif("真棒" in text or "厲害" in text):
-        answer = "這樣誇熊貓，熊貓會膨漲惡嘿嘿"
+        answer = "這樣誇熊貓，熊貓會膨漲的嘿嘿"
     else:
         answer = "QQ本熊貓聽不懂你在說什麼?"
     return answer
