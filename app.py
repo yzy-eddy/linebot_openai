@@ -26,6 +26,34 @@ line_bot_api = LineBotApi(os.getenv('CHANNEL_ACCESS_TOKEN'))
 handler = WebhookHandler(os.getenv('CHANNEL_SECRET'))
 # OPENAI API Key初始化設定
 #openai.api_key = os.getenv('OPENAI_API_KEY')
+answer = ""
+
+def game(text):
+    if(len(text) >= 3):
+        answer = "齁～～作弊鬼"
+    else:
+        answer = random.choice(game)
+        if(text == "剪刀"):
+            if(answer == "剪刀"):
+                answer +="\n啊呀平手再來一次"
+            elif(answer == "石頭"):
+                answer += "\n嘿嘿我贏了"
+            else:
+                answer+="\nQQ你贏了"
+        elif(text == "石頭"):
+            if(answer == "石頭"):
+                answer +="\n啊呀平手再來一次"
+            elif(answer == "布"):
+                answer += "\n嘿嘿我贏了"
+            else:
+                answer+="\nQQ你贏了"
+        else:
+            if(answer == "布"):
+                answer +="\n啊呀平手再來一次"
+            elif(answer == "剪刀"):
+                answer += "\n嘿嘿我贏了"
+            else:
+                answer+="\nQQ你贏了"
 
 
 def GPT_response(text):
@@ -39,44 +67,23 @@ def GPT_response(text):
     game = ["剪刀", "石頭", "布"]
     fortune = ["大吉", "小吉", "中吉", "末吉", "大凶", "小凶"]
     aplogize = ["不要生氣嘛", "對不起", "不要凶小熊貓嘛"]
-    answer = ""
+
     if("吃" in text):
         answer = random.choice(food)
     elif("哪" in text or "玩" in text):
         answer = random.choice(place)
     elif("剪刀" in text or "石頭" in text or "布" in text):
-        if(len(text) >= 3):
-            answer = "齁～～作弊鬼"
-        else:
-            answer = random.choice(game)
-            if(text == "剪刀"):
-                if(answer == "剪刀"):
-                    answer +="\n啊呀平手再來一次"
-                elif(answer == "石頭"):
-                    answer += "\n嘿嘿我贏了"
-                else:
-                    answer+="\nQQ你贏了"
-            elif(text == "石頭"):
-                if(answer == "石頭"):
-                    answer +="\n啊呀平手再來一次"
-                elif(answer == "布"):
-                    answer += "\n嘿嘿我贏了"
-                else:
-                    answer+="\nQQ你贏了"
-            else:
-                if(answer == "布"):
-                    answer +="\n啊呀平手再來一次"
-                elif(answer == "剪刀"):
-                    answer += "\n嘿嘿我贏了"
-                else:
-                    answer+="\nQQ你贏了"
+        answer = game(text)
     elif("運" in text or "算" in text or "命" in text):
         answer = random.choice(fortune)
     elif("笨" in text or "討厭" in text or "生氣" in text or "不愛" in text):
         answer = random.choice(aplogize)
+    elif("真棒" in text or "厲害" in text):
+        answer = "這樣誇熊貓，熊貓會膨漲惡嘿嘿"
     else:
         answer = "QQ本熊貓聽不懂你在說什麼?"
     return answer
+
 
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
