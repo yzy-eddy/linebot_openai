@@ -29,6 +29,7 @@ handler = WebhookHandler(os.getenv('CHANNEL_SECRET'))
 answer = ""
 
 def game_1(text):
+    game = ["剪刀", "石頭", "布"]
     if(len(text) >= 3):
             answer = "齁～～作弊鬼"
     else:
@@ -65,7 +66,6 @@ def GPT_response(text):
     #answer = response['choices'][0]['text'].replace('。','')
     food = ["韓式", "日式", "中式", "美式"]
     place = ["宜蘭", "台中", "高雄", "基隆","桃園", "台北", "台南"]
-    game = ["剪刀", "石頭", "布"]
     fortune = ["大吉", "小吉", "中吉", "末吉", "大凶", "小凶"]
     aplogize = ["不要生氣嘛", "對不起", "不要凶小熊貓嘛"]
 
