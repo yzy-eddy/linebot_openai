@@ -55,6 +55,7 @@ def game_1(text):
                 answer += "\n嘿嘿我贏了"
             else:
                 answer+="\nQQ你贏了"
+    return answer
     
 
 
