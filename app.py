@@ -28,33 +28,9 @@ handler = WebhookHandler(os.getenv('CHANNEL_SECRET'))
 #openai.api_key = os.getenv('OPENAI_API_KEY')
 answer = ""
 
-def game_1(text):
-    game = ["剪刀", "石頭", "布"]
-    if(len(text) >= 3):
-            answer = "齁～～作弊鬼"
-    else:
-        answer = random.choice(game)
-        if(text == "剪刀"):
-            if(answer == "剪刀"):
-                answer +="\n啊呀平手再來一次"
-            elif(answer == "石頭"):
-                answer += "\n嘿嘿我贏了"
-            else:
-                answer+="\nQQ你贏了"
-        elif(text == "石頭"):
-            if(answer == "石頭"):
-                answer +="\n啊呀平手再來一次"
-            elif(answer == "布"):
-                answer += "\n嘿嘿我贏了"
-            else:
-                answer+="\nQQ你贏了"
-        else:
-            if(answer == "布"):
-                answer +="\n啊呀平手再來一次"
-            elif(answer == "剪刀"):
-                answer += "\n嘿嘿我贏了"
-            else:
-                answer+="\nQQ你贏了"
+
+    
+    
     
 
 
@@ -68,13 +44,37 @@ def GPT_response(text):
     place = ["宜蘭", "台中", "高雄", "基隆","桃園", "台北", "台南"]
     fortune = ["大吉", "小吉", "中吉", "末吉", "大凶", "小凶"]
     aplogize = ["不要生氣嘛", "對不起", "不要凶小熊貓嘛"]
-
+    game = ["剪刀", "石頭", "布"]
     if("吃" in text):
         answer = random.choice(food)
     elif("哪" in text or "玩" in text):
         answer = random.choice(place)
     elif("剪刀" in text or "石頭" in text or "布" in text):
-        answer = game_1(text)
+        if(len(text) >= 3):
+            answer = "齁～～作弊鬼"
+        else:
+            answer = random.choice(game)
+            if(text == "剪刀"):
+                if(answer == "剪刀"):
+                    answer +="\n啊呀平手再來一次"
+                elif(answer == "石頭"):
+                    answer += "\n嘿嘿我贏了"
+                else:
+                    answer+="\nQQ你贏了"
+            elif(text == "石頭"):
+                if(answer == "石頭"):
+                    answer +="\n啊呀平手再來一次"
+                elif(answer == "布"):
+                    answer += "\n嘿嘿我贏了"
+                else:
+                    answer+="\nQQ你贏了"
+            else:
+                if(answer == "布"):
+                    answer +="\n啊呀平手再來一次"
+                elif(answer == "剪刀"):
+                    answer += "\n嘿嘿我贏了"
+                else:
+                    answer+="\nQQ你贏了"
     elif("運" in text or "算" in text or "命" in text):
         answer = random.choice(fortune)
     elif("笨" in text or "討厭" in text or "生氣" in text or "不愛" in text):
