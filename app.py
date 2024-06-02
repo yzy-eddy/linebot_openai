@@ -28,10 +28,22 @@ handler = WebhookHandler(os.getenv('CHANNEL_SECRET'))
 #openai.api_key = os.getenv('OPENAI_API_KEY')
 answer = ""
 
+def fortune_func():
+    fortune = ["大吉", "小吉", "中吉", "末吉", "大凶", "小凶"]
+    answer = random.choice(fortune)
+    if(answer == "大吉"):
+        lottery = random.sample(range(1,50),6)
+        answer = answer + "\n樂透號碼:" + lottery
+    elif(answer == "小吉"):
+        ticket = random.randint(1, 100)
+        answer = answer + "\n刮刮樂號碼:" + ticket
+    return answer
+
+
 def game_1(text):
     game = ["剪刀", "石頭", "布"]
     if(len(text) >= 3):
-            answer = "齁～～作弊鬼"
+        answer = "齁～～作弊鬼"
     else:
         answer = random.choice(game)
         if(text == "剪刀"):
@@ -67,7 +79,6 @@ def GPT_response(text):
     #answer = response['choices'][0]['text'].replace('。','')
     food = ["韓式", "日式", "中式", "美式"]
     place = ["宜蘭", "台中", "高雄", "基隆","桃園", "台北", "台南"]
-    fortune = ["大吉", "小吉", "中吉", "末吉", "大凶", "小凶"]
     aplogize = ["不要生氣嘛", "對不起", "不要凶小熊貓嘛"]
 
     if("吃" in text):
@@ -77,7 +88,7 @@ def GPT_response(text):
     elif("剪刀" in text or "石頭" in text or "布" in text):
         answer = game_1(text)
     elif("運" in text or "算" in text or "命" in text):
-        answer = random.choice(fortune)
+        answer = fortune_func()
     elif("笨" in text or "討厭" in text or "生氣" in text or "不愛" in text):
         answer = random.choice(aplogize)
     elif("真棒" in text or "厲害" in text):
