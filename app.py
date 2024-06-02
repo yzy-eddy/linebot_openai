@@ -29,15 +29,16 @@ handler = WebhookHandler(os.getenv('CHANNEL_SECRET'))
 answer = ""
 
 def fortune_func():
-    fortune = ["大吉", "小吉", "中吉", "末吉", "大凶", "小凶"]
-    answer = random.choice(fortune)
+    fortune = ["大吉", "中吉", "小吉", "末吉", "小凶", "大凶"]
+    weights = [0.05, 0.15, 0.3, 0.3, 0.15, 0.05]
+    answer = random.choices(fortune, weights=weights, k=1)
     if(answer == "大吉"):
         lottery = random.sample(range(1,50),6)
         lottery_str = ""
         for number in lottery:
             lottery_str += str(number) + " "
         answer = answer + "\n樂透號碼:" + lottery_str
-    elif(answer == "小吉"):
+    elif(answer == "中吉"):
         ticket = random.sample(range(1,101),5)
         ticket_str = ""
         for number in ticket:
