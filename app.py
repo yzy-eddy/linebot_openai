@@ -38,8 +38,11 @@ def fortune_func():
             lottery_str += str(number) + " "
         answer = answer + "\n樂透號碼:" + lottery_str
     elif(answer == "小吉"):
-        ticket = random.randint(1, 100)
-        answer = answer + "\n刮刮樂號碼:" + str(ticket)
+        ticket = random.sample(range(1,101),5)
+        ticket_str = ""
+        for number in ticket:
+            ticket_str += str(number) + " "
+        answer = answer + "\n刮刮樂號碼:" + ticket_str
     return answer
 
 
