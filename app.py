@@ -33,10 +33,13 @@ def fortune_func():
     answer = random.choice(fortune)
     if(answer == "大吉"):
         lottery = random.sample(range(1,50),6)
-        answer = answer + "\n樂透號碼:" + lottery
+        lottery_str = ""
+        for number in lottery:
+            lottery_str += str(number) + " "
+        answer = answer + "\n樂透號碼:" + lottery_str
     elif(answer == "小吉"):
         ticket = random.randint(1, 100)
-        answer = answer + "\n刮刮樂號碼:" + ticket
+        answer = answer + "\n刮刮樂號碼:" + str(ticket)
     return answer
 
 
