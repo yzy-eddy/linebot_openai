@@ -31,7 +31,7 @@ answer = ""
 def fortune_func():
     fortune = ["大吉", "中吉", "小吉", "末吉", "小凶", "大凶"]
     weights = [0.05, 0.15, 0.3, 0.3, 0.15, 0.05]
-    answer = random.choices(fortune, weights=weights, k=1)
+    answer = random.choice(fortune, weights=weights, k=1)
     if(answer == "大吉"):
         lottery = random.sample(range(1,50),6)
         lottery_str = ""
