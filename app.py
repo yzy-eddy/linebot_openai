@@ -79,7 +79,7 @@ def game_1(text):
 @app.route('/weather', methods=['GET'])
 def get_weather():
     # 替换成中央气象局API的实际URL和你的API key
-    api_url = 'https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001'
+    api_url = 'https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001'
     api_key = 'CWA-DC388112-F471-4FC4-B13B-A73231BB439A'
 
     # 发送请求到中央气象局API
@@ -110,14 +110,14 @@ def GPT_response(text):
         answer = random.choice(place)
     elif("剪刀" in text or "石頭" in text or "布" in text):
         answer = game_1(text)
+    elif("幸運色" in text):
+        answer = random.choice(color)
     elif("運" in text or "算" in text or "命" in text):
         answer = fortune_func()
     elif("笨" in text or "討厭" in text or "生氣" in text or "不愛" in text):
         answer = random.choice(aplogize)
     elif("真棒" in text or "厲害" in text):
         answer = "這樣誇熊貓，本熊貓會膨漲的嘿嘿"
-    elif("幸運色" in text):
-        answer = random.choice(color)
     elif("天氣" in text):
         weather_url = url_for('get_weather', _external=True)
 
