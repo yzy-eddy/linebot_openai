@@ -76,7 +76,22 @@ def game_1(text):
                 answer+="\nQQ你贏了"
     return answer
     
+@app.route('/weather', methods=['GET'])
+def get_weather():
+    # 替换成中央气象局API的实际URL和你的API key
+    api_url = 'https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001'
+    api_key = 'CWA-DC388112-F471-4FC4-B13B-A73231BB439A'
 
+    # 发送请求到中央气象局API
+    response = requests.get(api_url, params={'Authorization': api_key})
+
+    # 检查请求是否成功
+    if response.status_code == 200:
+        weather_data = response.json()
+        return Response(json.dumps(weather_data), mimetype='application/json')
+    else:
+        error_response = {'error': 'Failed to fetch weather data'}
+        return Response(json.dumps(error_response), status=response.status_code, mimetype='application/json')
 
 def GPT_response(text):
     # 接收回應
@@ -87,6 +102,7 @@ def GPT_response(text):
     food = ["韓式", "日式", "中式", "美式"]
     place = ["宜蘭", "台中", "高雄", "基隆","桃園", "台北", "台南"]
     aplogize = ["不要生氣嘛", "對不起", "不要凶小熊貓嘛"]
+    color = ["紅", "橙", "黃", "綠", "藍", "紫", "黑", "白", "粉", "灰"]
 
     if("吃" in text):
         answer = random.choice(food)
@@ -100,6 +116,16 @@ def GPT_response(text):
         answer = random.choice(aplogize)
     elif("真棒" in text or "厲害" in text):
         answer = "這樣誇熊貓，本熊貓會膨漲的嘿嘿"
+    elif("幸運色" in text):
+        answer = random.choice(color)
+    elif("天氣" in text):
+        weather_url = url_for('get_weather', _external=True)
+
+        # 发送请求到 /weather 路由
+        response = requests.get(weather_url)
+
+        # 返回响应数据
+        return Response(response.content, status=response.status_code, mimetype='application/json')
     else:
         answer = "QQ本熊貓聽不懂你在說什麼?"
     return answer
