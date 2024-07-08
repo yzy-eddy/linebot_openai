@@ -76,22 +76,22 @@ def game_1(text):
                 answer+="\nQQ你贏了"
     return answer
     
-@app.route('/weather', methods=['GET'])
-def get_weather():
-    # 替换成中央气象局API的实际URL和你的API key
-    api_url = 'https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001'
-    api_key = 'CWA-DC388112-F471-4FC4-B13B-A73231BB439A'
+# @app.route('/weather', methods=['GET'])
+# def get_weather():
+#     # 替换成中央气象局API的实际URL和你的API key
+#     api_url = 'https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001'
+#     api_key = 'CWA-DC388112-F471-4FC4-B13B-A73231BB439A'
 
-    # 发送请求到中央气象局API
-    response = requests.get(api_url, params={'Authorization': api_key})
+#     # 发送请求到中央气象局API
+#     response = requests.get(api_url, params={'Authorization': api_key})
 
-    # 检查请求是否成功
-    if response.status_code == 200:
-        weather_data = response.json()
-        return Response(json.dumps(weather_data), mimetype='application/json')
-    else:
-        error_response = {'error': 'Failed to fetch weather data'}
-        return Response(json.dumps(error_response), status=response.status_code, mimetype='application/json')
+#     # 检查请求是否成功
+#     if response.status_code == 200:
+#         weather_data = response.json()
+#         return Response(json.dumps(weather_data), mimetype='application/json')
+#     else:
+#         error_response = {'error': 'Failed to fetch weather data'}
+#         return Response(json.dumps(error_response), status=response.status_code, mimetype='application/json')
 
 def GPT_response(text):
     # 接收回應
@@ -118,8 +118,8 @@ def GPT_response(text):
         answer = random.choice(aplogize)
     elif("真棒" in text or "厲害" in text):
         answer = "這樣誇熊貓，本熊貓會膨漲的嘿嘿"
-    elif("天氣" in text):
-        weather_url = url_for('get_weather', _external=True)
+    # elif("天氣" in text):
+    #     weather_url = url_for('get_weather', _external=True)
 
         # 发送请求到 /weather 路由
         response = requests.get(weather_url)
@@ -130,6 +130,9 @@ def GPT_response(text):
         answer = "QQ本熊貓聽不懂你在說什麼?"
     return answer
 
+@app.route('/', methods=['HEAD'])
+def head_request():
+    return '', 200
 
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
