@@ -162,7 +162,7 @@ def handle_message(event):
         GPT_answer = GPT_response(msg)
         if('禮物' in GPT_answer):
             image_message = ImageSendMessage(original_content_url='https://drive.google.com/file/d/1z7XSGxYX0rymvnMxwAxNks5OeeHdVmqh/view?usp=sharingg',preview_image_url='https://drive.google.com/file/d/1z7XSGxYX0rymvnMxwAxNks5OeeHdVmqh/view?usp=sharing')
-            line_bot_api.push_message(event.reply_token, image_message)
+            line_bot_api.push_message(event.source.user_id, image_message)
         else:
             print(GPT_answer)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(GPT_answer))
