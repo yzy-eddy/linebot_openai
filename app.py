@@ -161,7 +161,7 @@ def handle_message(event):
     try:
         GPT_answer = GPT_response(msg)
         if('禮物' in GPT_answer):
-            image_message = ImageSendMessage(original_content_url='https://drive.google.com/file/d/12vQW4NkL4NBWKpAkarS35F0mUOAeU6r0/view?usp=sharing',preview_image_url='https://drive.google.com/file/d/12vQW4NkL4NBWKpAkarS35F0mUOAeU6r0/view?usp=sharing')
+            image_message = ImageSendMessage(original_content_url='https://imgur.com/a/tigoNFC',preview_image_url='https://imgur.com/a/tigoNFC')
             print(image_message)
             line_bot_api.push_message(event.source.user_id, image_message)
         else:
