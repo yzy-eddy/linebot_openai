@@ -116,6 +116,8 @@ def GPT_response(text):
         answer = fortune_func()
     elif("笨" in text or "討厭" in text or "生氣" in text or "不愛" in text):
         answer = random.choice(aplogize)
+    elif("日子" in text):
+        answer = "今天是姵褆大美女的生日！！！！"
     elif("真棒" in text or "厲害" in text):
         answer = "這樣誇熊貓，本熊貓會膨漲的嘿嘿"
     # elif("天氣" in text):
