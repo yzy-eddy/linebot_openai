@@ -122,10 +122,12 @@ def GPT_response(text):
     #     weather_url = url_for('get_weather', _external=True)
 
         # 发送请求到 /weather 路由
-        response = requests.get(weather_url)
+        # response = requests.get(weather_url)
 
         # 返回响应数据
-        return Response(response.content, status=response.status_code, mimetype='application/json')
+        # return Response(response.content, status=response.status_code, mimetype='application/json')
+    elif("禮物" in text):
+        return ImageSendMessage(original_content_url='https://fraguru.com/mdimg/perfume/375x500.3575.jpg', preview_image_url='https://fraguru.com/mdimg/perfume/375x500.3575.jpg')
     else:
         answer = "QQ本熊貓聽不懂你在說什麼?"
     return answer
