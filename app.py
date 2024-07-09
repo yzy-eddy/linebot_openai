@@ -127,7 +127,8 @@ def GPT_response(text):
         # 返回响应数据
         # return Response(response.content, status=response.status_code, mimetype='application/json')
     elif("禮物" in text):
-        return 'https://drive.google.com/file/d/1z7XSGxYX0rymvnMxwAxNks5OeeHdVmqh/view?usp=sharing'
+        return "禮物"
+        # return 'https://drive.google.com/file/d/1z7XSGxYX0rymvnMxwAxNks5OeeHdVmqh/view?usp=sharing'
         # return ImageSendMessage(original_content_url='https://drive.google.com/file/d/1z7XSGxYX0rymvnMxwAxNks5OeeHdVmqh/view?usp=sharing', preview_image_url='https://drive.google.com/file/d/1z7XSGxYX0rymvnMxwAxNks5OeeHdVmqh/view?usp=sharing')
     else:
         answer = "QQ本熊貓聽不懂你在說什麼?"
@@ -159,8 +160,8 @@ def handle_message(event):
     msg = event.message.text
     try:
         GPT_answer = GPT_response(msg)
-        if('https' in GPT_answer):
-            image_message = ImageSendMessage(original_content_url='https://example.com/original.jpg',preview_image_url='https://example.com/preview.jpg')
+        if('禮物' in GPT_answer):
+            image_message = ImageSendMessage(original_content_url='https://drive.google.com/file/d/1z7XSGxYX0rymvnMxwAxNks5OeeHdVmqh/view?usp=sharingg',preview_image_url='https://drive.google.com/file/d/1z7XSGxYX0rymvnMxwAxNks5OeeHdVmqh/view?usp=sharing')
             line_bot_api.push_message(event.reply_token, image_message)
         else:
             print(GPT_answer)
